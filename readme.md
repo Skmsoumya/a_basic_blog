@@ -1,0 +1,1 @@
+# A Basic Blog made with Python, Jinja2 and google App Engine
