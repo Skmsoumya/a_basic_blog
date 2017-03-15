@@ -1,0 +1,93 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	background: #efefef;
+}
+
+* button {
+	padding: 20px;
+    border: none;
+    background: #13b494;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.mainHeader {
+	height: 60px;
+	box-shadow: 0px 1px 10px 1px rgba(0,0,0,0.75);
+	background: #13b494;
+	color: #ffffff;
+}
+
+.headerButtons{
+	height: 60px;
+	padding: 0px 20px;
+	margin: 0 10px;
+	text-transform: uppercase;
+	font-weight: bold;
+	display: inline-block;
+	line-height: 60px;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+.headerButtons:hover {
+	background-color: rgba(0,0,0,0.3)
+}
+
+.blogTitle {
+	height: 60px;
+	margin: 0px 20px;
+	line-height: 60px;
+	color: inherit;
+	font-size: 20px;
+	display: inline-block;
+	text-transform: uppercase;
+	font: Arial;
+	font-weight: 300;
+}
+
+.formHolder {
+	max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    box-shadow: 1px 2px 110px 1px rgba(0,0,0,0.3);
+}
+
+.formElementHolder label{
+	color: rgba(0,0,0,0.85);
+	font-weight: bold;
+	font-height:16px;
+	text-transform: uppercase;
+}
+
+.formElementHolder input, .formElementHolder textarea{
+	width: 100%;
+    padding: 10px;
+    margin: 20px 0px;
+    line-height: 25px;
+    font-size: 16px;
+    border: none;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+input[name="blogTitle"] {
+	font-weight: 600;
+	font-size: 24px;
+}
+
+textarea[name="blogContent"] {
+	min-height: 260px;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+	font-size: 14px;
+}
+

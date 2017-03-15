@@ -1,0 +1,33 @@
+{% extends "commonFiles.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{%block content %}
+	<div class="formHolder">
+		<form id="addPostBlog" method="post">
+			<div class="formElementHolder">
+				<label>
+					Title
+					<div>
+						<input type="text" name="blogTitle" value="{{title}}">
+					</div>
+				</label>
+				{% if errors.title_error %}
+					<div class="error">{{ errors.title_error }}</div>
+				{% endif %}
+			</div>
+			<div class="formElementHolder">
+				<label>
+					Blog Content
+					<div>
+						<textarea type="text" name="blogContent">{{content}}</textarea>
+					</div>
+				</label>
+				{% if errors.content_error %}
+					<div class="error">{{ errors.content_error }}</div>
+				{% endif %}
+			</div>
+			<button type="submit">Save And Publish</button>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %} -- A Demo Blog</title>
+		<link rel="stylesheet" type="text/css" href="/static/commonStyles.css">
+	</head>
+	<body>
+		<header class="mainHeader">
+			<div class="blogTitle">A Demo Blog</div>
+			<div class="headerButtons">Home</div>
+			<div class="headerButtons">Article</div>
+		</header>
+		<div class="mainContainer">
+			{%block content %}{% endblock %}
+		</div>
+	</body>
+</html>
