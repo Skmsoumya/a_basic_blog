@@ -1,0 +1,33 @@
+{% extends "commonFiles.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+	<div class="formHolder">
+		<form method="post">
+			<h2>Please enter your details to Login</h2>
+			<br>
+			<div class="formElementHolder">
+				<label>
+					User Name <span style="color: red;">*</span>
+					<input type="text" name="userName" value="{{page.userName}}"/>
+				</label>
+			</div>
+			<br>
+			<div class="formElementHolder">
+				<label>
+					Password <span style="color: red;">*</span>
+					<input type="password" name="password">
+				</label>
+			</div>
+			<br>
+			{% if page.hasErrors %}
+				<div class="error">Invalid Login Credentials!!</div>
+			{% endif %}
+			<br>
+			<br>
+
+			<button type="submit">Log In</button>
+		</form>
+	</div>
+{% endblock %}

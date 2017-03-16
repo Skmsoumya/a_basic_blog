@@ -87,8 +87,12 @@ def validate_user(text):
 
 def check_user_exists(text):
 	user_exist = db.GqlQuery("SELECT * FROM User WHERE user_id = :user", user = text).get()
-	logging.info(user_exist)
 	return user_exist 
+
+def check_user(userName, password):
+	db_user = check_user_exists(userName)
+	return valid_pw(userName, password, db_user.password), db_user
+
 def validate_password(passwod):
 	return PASSWORD_RE.match(passwod)
 def validate_email(email):
@@ -209,11 +213,43 @@ class SignupHandler(Handler):
 			self.response.headers["Content-Type"] = "text/plain"
 			self.response.headers.add_header("Set-Cookie", "user=%s" % str(secure_user_id))
 			self.redirect("/")
+class LoginHandler(Handler):
+	def get(self):
+		page = {
+			"errors": {
 
+			}
+		}
+		self.render("loginTemplate.html", page = page)
+	def post(self):
+		page = {
+			"title": "Please Check the Errors In the Form",
+			"errors": {},
+			"hasErrors": False
+		}
+		page["userName"] = userName = self.get_from_request("userName")
+		password = self.get_from_request("password")
+		if not (userName and validate_user(userName) ):
+			page["hasErrors"] = True
+		if not (password and validate_password(password)):
+			page["hasErrors"] = True
+
+		user_identity_confirmed, valid_user = check_user(userName, password)
+		if(not user_identity_confirmed):
+			page["hasErrors"] = True
+
+		if page["hasErrors"]:
+			self.render("loginTemplate.html", page = page)
+		else:
+			secure_user_id = make_secure_val(valid_user.user_id)
+			self.response.headers["Content-Type"] = "text/plain"
+			self.response.headers.add_header("Set-Cookie", "user=%s" % str(secure_user_id))
+			self.redirect("/")
 app = webapp2.WSGIApplication([
     ('/', MainHandler), 
     ("/add_post", AdminHandler), 
     ("/blog/(.*)", BlogEntryHandler),
     ("/cookie", CookieCheck),
-    ("/signup", SignupHandler)
+    ("/signup", SignupHandler),
+    ("/login", LoginHandler)
 ], debug=True)
