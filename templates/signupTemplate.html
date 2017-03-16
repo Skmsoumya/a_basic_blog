@@ -1,0 +1,58 @@
+{% extends "commonFiles.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+	<div class="formHolder">
+		<form method="post">
+			<h2>Please enter your user details</h2>
+			<br>
+			<div class="formElementHolder">
+				<label>
+					User Name <span style="color: red;">*</span>
+					<input type="text" name="userName" value="{{page.userName}}"/>
+					{% if page.errors.userName %}
+						<span style="color: red;">Please Enter A Valid User Name!</span>
+					{% endif %}
+					{% if page.errors.userExists %}
+						<span style="color: red;">User Already Exists!</span>
+					{% endif %}
+				</label>
+			</div>
+			<br>
+			<div class="formElementHolder">
+				<label>
+					Password <span style="color: red;">*</span>
+					<input type="password" name="password">
+					{% if page.errors.password %}
+						<span style="color: red;">Please Enter A Valid Password!</span>
+					{% endif %}
+				</label>
+			</div>
+			<br>
+			<div class="formElementHolder">
+			<label>
+				Retype Password <span style="color: red;">*</span>
+					<input type="password" name="rePassword">
+					{% if page.errors.rePass %}
+						<span style="color: red;">Passwords don't Match!</span>
+					{% endif %}
+				</label>
+			</div>
+			<br>
+			<div class="formElementHolder">
+				<label>
+					Email (Optional)
+					<input type="text" name="email" value="{{page.email}}">
+					{% if page.errors.email %}
+						<span style="color: red;">Please Enter A Valid Email!</span>
+					{% endif %}
+				</label>
+			</div>
+			<br>
+			<br>
+
+			<button type="submit">Sign Up</button>
+		</form>
+	</div>
+{% endblock %}

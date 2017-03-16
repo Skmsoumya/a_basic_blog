@@ -1,3 +1,17 @@
 {% extends "commonFiles.html" %}
 
 {% block title %}Home{% endblock %}
+
+{% block homeContent %}
+	<div class="postsHolder">
+		{% if posts %}
+			{% for post in posts %}
+				<div class="blogPost">
+					<div class="title"><a href="/blog/{{post.key().id()}}">{{post.title}}</a></div>
+					<div class="dateTime">{{post.created.strftime('%Y %m %d')}}</div>
+					<pre class="body">{{post.content}}</pre>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}

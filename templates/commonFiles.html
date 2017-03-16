@@ -6,12 +6,28 @@
 	</head>
 	<body>
 		<header class="mainHeader">
-			<div class="blogTitle">A Demo Blog</div>
-			<div class="headerButtons">Home</div>
-			<div class="headerButtons">Article</div>
+			<a href="/">
+				<div class="blogTitle">A Demo Blog</div>
+			</a>
+			<a href="/">
+				<div class="headerButtons">Home</div>
+			</a>
+			<div class="rightHolder">
+				{% if userName %}
+					<div class="headerButtons">Hello {{userName}}!!</div>
+				{% else %}
+					<a href="/signup">
+						<div class="headerButtons">Sign Up</div>
+					</a>
+					<div class="headerButtons">Sign In</div>
+					
+				{% endif %}
+
+			</div>
 		</header>
 		<div class="mainContainer">
-			{%block content %}{% endblock %}
+			{% block content %}{% endblock %}
+			{% block homeContent %}{% endblock %}
 		</div>
 	</body>
 </html>
