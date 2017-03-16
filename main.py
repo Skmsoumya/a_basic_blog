@@ -245,11 +245,17 @@ class LoginHandler(Handler):
 			self.response.headers["Content-Type"] = "text/plain"
 			self.response.headers.add_header("Set-Cookie", "user=%s" % str(secure_user_id))
 			self.redirect("/")
+class LogoutHandler(Handler):
+	def get(self):
+		self.response.headers["Content-type"] = "text/plain"
+		self.response.headers.add_header("Set-Cookie", "user=")
+		self.redirect("/")
 app = webapp2.WSGIApplication([
     ('/', MainHandler), 
     ("/add_post", AdminHandler), 
     ("/blog/(.*)", BlogEntryHandler),
     ("/cookie", CookieCheck),
     ("/signup", SignupHandler),
-    ("/login", LoginHandler)
+    ("/login", LoginHandler),
+    ("/logout", LogoutHandler)
 ], debug=True)
